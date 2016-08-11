@@ -37,7 +37,7 @@ public class MyImage implements Serializable {
 
     public MyImage (String url, int width, int height, String author, int category, int loved, long modified_date){
         urls = new Link();
-        urls.setFull(url);
+        urls.setRaw(url);
         user = new User();
         user.setName(author);
         //this.author = author;
@@ -57,11 +57,11 @@ public class MyImage implements Serializable {
     }
 
     public String getUrl() {
-        return getLinks().getFull();
+        return getLinks().getRaw();
     }
 
     public String getHighResImage(int minWidth, int minHeight) {
-        String url = getLinks().getFull() + "?fm=png";
+        String url = getLinks().getRaw() + "?fm=png";
 
         //minimize processing costs of unsplash image hosting
         //try to eliminate the white line on top
@@ -109,7 +109,7 @@ public class MyImage implements Serializable {
     }
 
     public String getImageSrc(int screenWidth) {
-        return getLinks().getFull() + "?q=75&fm=jpg&w=" + Utils.optimalImageWidth(screenWidth);
+        return getLinks().getRaw() + "?q=75&fm=jpg&w=" + Utils.optimalImageWidth(screenWidth);
 
         /*
         wait with this one for now. i don't want to bring up the generation quota of unsplash

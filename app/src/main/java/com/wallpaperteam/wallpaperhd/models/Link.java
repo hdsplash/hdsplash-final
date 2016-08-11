@@ -10,6 +10,15 @@ public class Link implements Serializable  {
     public String full;
     private String regular;
     private String small;
+    private String raw;
+
+    public String getRaw() {
+        return raw;
+    }
+
+    public void setRaw(String raw) {
+        this.raw = raw;
+    }
 
     public String getFull() {
         return full;

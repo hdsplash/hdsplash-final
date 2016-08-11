@@ -148,6 +148,7 @@ public class ImageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             style(imagesViewHolder.imageLovedYes, mStarred == 1 ? 1 : 0);
             style(imagesViewHolder.imageLovedNo, mStarred == 0 ? 1 : 0);
 
+
             Picasso.with(mContext).load(((MyImage)listData.get(position)).getImageSrc(mScreenWidth))
                     //.networkPolicy(isNetworkOnline() ? NetworkPolicy.NO_CACHE : NetworkPolicy.OFFLINE)
                     .networkPolicy(NetworkPolicy.OFFLINE)
@@ -299,7 +300,6 @@ public class ImageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         } // end onError
                     });  // end picasso
 
-
             //calculate height of the list-item so we don't have jumps in the view
             DisplayMetrics displaymetrics = mContext.getResources().getDisplayMetrics();
             int finalHeight =  0;
@@ -311,6 +311,8 @@ public class ImageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             int layoutType = CustomApplication.sharedPreferences.getInt("LayoutType", 1);
             finalHeight = (layoutType == 0) ? finalHeight / 2 : finalHeight;
             imagesViewHolder.imageView.setMinimumHeight(finalHeight);
+
+
         } else if (rowData instanceof AppInstallAdPlacement){
             //TODO: For future native ad advance
             //AppAdViewHolder adViewHolder = (AppAdViewHolder)ViewHolder;
@@ -318,6 +320,8 @@ public class ImageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             layoutType= CustomApplication.sharedPreferences.getInt(mContext.getString(R.string.layout_type), 1);
             AdNativeViewHolder adNativeViewHolder = (AdNativeViewHolder)ViewHolder;
             adNativeViewHolder.adView.loadAd(new AdRequest.Builder().build());
+
+
             if(layoutType == 0){
                 adNativeViewHolder.adView.setVisibility(View.GONE);
             } else if(layoutType == 1){
